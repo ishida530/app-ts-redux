@@ -1,30 +1,49 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Dispatch } from "redux";
 import './Event.scss'
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import Moment from 'react-moment';
+import 'moment-timezone';
 type Props = {
     event: iEvent;
     id: number
-    //  addEvent: (article: IArticle) => void;
 };
 
 
 const Event: React.FC<Props> = ({ event, id }) => {
 
+    const titles: string[] = useSelector(
+        (state: EventState) => state.titles
+    );
     const { title, date_event, description, image, type_event, phone_number, email, place_event } = event;
+    return <li className="list-group-item d-block d-lg-flex justify-content-between">
 
-    return <li className="list-group-item d-flex justify-content-between">
-        <div className='col'>{title}</div>
-        <div className='col'>{date_event}</div>
-        <div className='col'>{description}</div>
-        <div className='col'><img className='img-fluid' src={process.env.PUBLIC_URL + `/images/${image}`} /></div>
-        <div className='col'>{type_event}</div>
-        <div className='col'>{phone_number}</div>
-        <div className='col'>{email}</div>
-        <div className='col'>{place_event}</div>
-        <div className='col' ><Link state={event} className='btn btn-primary' to={`/events/${id}`} >Details</Link></div>
-    </li>
+        {Object.values(event).map((value: string, index: number) => {
+            if (index === 7) {
+                return (
+                    <div key={index} className='col-12 col-lg d-block d-sm-flex mb-2'>
+                        <div className='col-12 col-sm-6 col-lg d-block d-sm-flex d-lg-none justify-content-center justify-content-sm-start justify-content-lg-center align-items-center fw-bold'>{titles[index]}:</div>
+                        <div className='col-12 col-sm-6 col-lg '><img className='img-fluid' src={process.env.PUBLIC_URL + `/images/${value}`} /></div>
+                    </div>
+                )
+            } else if (index === 1) {
+
+                return (
+                    <div key={index} className='col-12 col-lg d-block d-sm-flex align-items-center'>
+                        <div className='col-12 col-sm-6 col-lg d-flex d-lg-none align-items-center fw-bold justify-content-center justify-content-sm-start justify-content-lg-center align-items-center'>{titles[index]}:</div>
+                        <div className='col-12 col-sm-6 col-lg  '> <Moment format="MM-DD-YY HH:mm">{value}</Moment></div>
+                    </div>)
+
+            } else {
+                return (
+                    <div key={index} className='col-12 col-lg d-block d-sm-flex align-items-center'>
+                        <div className='col-12 col-sm-6 col-lg d-flex d-lg-none align-items-center fw-bold justify-content-center justify-content-sm-start justify-content-lg-center align-items-center'>{titles[index]}:</div>
+                        <div className='col-12 col-sm-6 col-lg  '>{value}</div>
+                    </div>)
+            }
+        })}
+        <div className='col d-flex align-items-center justify-content-center' ><Link state={event} className='btn btn-secondary' to={`/events/${id}`} >Details</Link></div>
+    </li >
 
 };
 

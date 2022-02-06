@@ -1,25 +1,19 @@
 import * as actionTypes from "./actionTypes"
-// import logo from './../../public/image/mustang.jpg';
-
-// import img1 from `./../../public/image/1.jpg`
-// import img2 from './../../public/image/2.jpg'
-// import img3 from './../../public/image/3.jpg'
-// import img4 from './../../public/image/4.jpg'
-// import img5 from './../../public/image/5.jpg'
 
 export const initialState: EventState = {
     events: [
         {
             title: "tytul",
-            date_event: "13.02.1994",
+            date_event: new Date(),
             description: "urodziny",
-            image: "mustang.jpg",
             type_event: "Sport, Kultura, x",
             phone_number: "515 515 515",
             email: "email@wp.pl",
-            place_event: "dom"
+            place_event: "dom",
+            image: "mustang.jpg",
         }
     ],
+    titles: ['Title', 'Event data + time', 'Description', 'Type of event', 'Phone number', 'E-mail adress', 'Place of the event', 'Picture', '']
 }
 const reducer = (
     state: EventState = initialState,

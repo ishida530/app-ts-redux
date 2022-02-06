@@ -1,6 +1,8 @@
+declare module 'react-datapicker';
+
 interface iEvent {
     "title": string,
-    "date_event": string,
+    "date_event": Date,
     "description": string,
     "image": string,
     "type_event": string,
@@ -10,7 +12,8 @@ interface iEvent {
 }
 
 type EventState = {
-    events: iEvent[]
+    events: iEvent[],
+    titles: string[]
 }
 
 type EventAction = {

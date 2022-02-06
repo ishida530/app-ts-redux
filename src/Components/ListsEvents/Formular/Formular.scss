@@ -1,10 +1,12 @@
 form {
     display: flex;
     flex-direction: column;
-    width: 50%;
     margin: 0 auto;
 
     div {
+        label {
+            font-weight: bold;
+        }
 
         input,
         select {
@@ -13,9 +15,19 @@ form {
             margin: 5px 5px;
         }
 
-        label {
+        ::placeholder {
+            text-transform: capitalize;
+        }
+
+        .react-datepicker-ignore-onclickoutside label {
             text-align: left;
             margin-left: 5px;
+            text-transform: capitalize;
+            font-weight: bold;
+        }
+
+        .errorTitle {
+            color: red;
         }
     }
 }

@@ -1,8 +1,6 @@
 import axios from "axios";
 import * as actionTypes from "./actionTypes"
 
-
-
 export const addEvent = (event: iEvent) => (
     (dispatch: DispatchType) => dispatch({
         type: actionTypes.ADD_EVENT,
