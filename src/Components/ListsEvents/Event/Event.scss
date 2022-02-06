@@ -1,0 +1,15 @@
+.list-group-item {
+    width: 100%;
+
+    div {
+        width: 10%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        img {
+            width: 100%;
+        }
+    }
+
+}
