@@ -3,13 +3,13 @@ import * as actionTypes from "./actionTypes"
 export const initialState: EventState = {
     events: [
         {
-            title: "tytul",
+            title: "WRC",
             date_event: new Date(),
-            description: "urodziny",
-            type_event: "Sport, Kultura, x",
-            phone_number: "515 515 515",
-            email: "email@wp.pl",
-            place_event: "dom",
+            description: "world rally championship",
+            type_event: "Sport",
+            phone_number: "+44 515 515 515",
+            email: "wrc@gmail.pl",
+            place_event: "Nederland",
             image: "mustang.jpg",
         }
     ],
@@ -22,7 +22,6 @@ const reducer = (
     switch (action.type) {
         case actionTypes.ADD_EVENT:
             const newEvent: iEvent = {
-                // id: action.payload.id, // not really unique
                 title: action.payload.title,
                 date_event: action.payload.date_event,
                 description: action.payload.description,
@@ -32,8 +31,6 @@ const reducer = (
                 email: action.payload.email,
                 place_event: action.payload.place_event,
             }
-            console.log("newEvent", newEvent)
-
             return { ...state, events: [...state.events, action.payload] };
         case actionTypes.UPDATE_EVENTS:
             return { ...state, events: [...state.events, action.payload] }

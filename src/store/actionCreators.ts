@@ -11,7 +11,6 @@ export const updateEvents = () => {
     return async (dispatch: DispatchType) => {
         const response = axios.get(`http://localhost:3001/`)
             .then((res: any) => {
-                console.log("updateEvents", res.data)
                 return dispatch({
                     type: actionTypes.UPDATE_EVENTS,
                     payload: res.data,

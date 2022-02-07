@@ -15,6 +15,7 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import Headline from '../../Headline/Headline';
 
 interface MyFormValues {
     "title": string,
@@ -30,6 +31,7 @@ interface MyFormValues {
 
 export const Formular = () => {
     const [startDate, setStartDate] = useState(new Date());
+
     const countDispatch = useDispatch<Dispatch<EventAction>>();
     const dispatch = useDispatch()
     const navigate = useNavigate();
@@ -37,6 +39,7 @@ export const Formular = () => {
     const titlesName: string[] = useSelector(
         (state: EventState) => state.titles
     );
+
     const initialValues: MyFormValues = {
         title: "",
         date_event: new Date(),
@@ -47,17 +50,14 @@ export const Formular = () => {
         description: "",
         image: '',
     };
+    const [titles, setTitiles] = useState(Object.keys(initialValues));
 
     const handleOnSubmit = (values: iEvent) => {
-        alert(JSON.stringify(values));
-
         axios({
             method: 'post',
             url: 'http://localhost:3001/add',
             data: JSON.stringify(values),
         }).then((response) => {
-            console.log(response.data);
-            console.log('udalo');
             Swal.fire(
                 'Good job!',
                 'You clicked the button!',
@@ -67,10 +67,10 @@ export const Formular = () => {
                     dispatch(addEvent(values));
                     return navigate("/");
                 }
-
             })
         })
     }
+
     const SignupSchema = Yup.object().shape({
         title: Yup.string()
             .max(15, 'Must be 15 characters or less')
@@ -96,8 +96,6 @@ export const Formular = () => {
     })
 
 
-    const [titles, setTitiles] = useState(Object.keys(initialValues));
-
     const handleError = (errors: FormikErrors<MyFormValues>, touched: FormikTouched<MyFormValues>, title: any) => {
         return (
             errors.title && touched.title ? (
@@ -107,7 +105,7 @@ export const Formular = () => {
 
     return (
         <div className='d-flex flex-column col-12'>
-            <h1>Event add form</h1>
+            <Headline title={'Event add form'} />
             <Formik
                 initialValues={initialValues}
                 validationSchema={SignupSchema}
@@ -141,10 +139,7 @@ export const Formular = () => {
                                                     }}
                                                     shouldCloseOnSelect={true}
                                                 />
-
-
                                             );
-
                                         }}
                                     </Field>
                                     {errors.date_event && touched.date_event ? <p className='text-danger'>{errors.date_event}</p> : null}
@@ -161,7 +156,7 @@ export const Formular = () => {
                         })}
                         <div className='d-flex w100 justify-content-between mt-3'>
                             <button type="button" className="btn btn-secondary col-4" onClick={() => resetForm()} >Clean</button>
-                            <button type="submit" className="btn btn-primary   col-4" >Save</button>
+                            <button type="submit" className="btn btn-secondary col-4" >Save</button>
                         </div>
                     </Form>
                 )}

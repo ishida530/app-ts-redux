@@ -1,17 +1,22 @@
 import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { updateEvents } from './store/actionCreators';
+import { Routes, Route, useLocation, useHref, Router } from 'react-router-dom'
+
+
+import ListsEvents from './Components/ListsEvents/ListsEvents';
+import Formular from './Components/ListsEvents/Formular/Formular';
+import EventDetails from './Components/ListsEvents/Event/EventDetails/EventDetails';
+
 import './App.scss';
 import "bootstrap";
 import 'bootstrap/dist/css/bootstrap.css';
-import ListsEvents from './Components/ListsEvents/ListsEvents';
-import { useDispatch } from 'react-redux';
-import { updateEvents } from './store/actionCreators';
-import {
-  Routes,
-  Route
-} from "react-router-dom";
 
-import Formular from './Components/ListsEvents/Formular/Formular';
-import EventDetails from './Components/ListsEvents/Event/EventDetails/EventDetails';
+export const LocationDisplay = () => {
+  const location = useLocation()
+  return <div data-testid="location-display">{location.pathname}</div>
+}
+
 
 const App = () => {
   const dispatch = useDispatch()
@@ -22,12 +27,15 @@ const App = () => {
     getAllEvents()
   }, []);
   return (
+
     <div className="App container">
-      <Routes>
+      <Routes >
         <Route path="/" element={<ListsEvents />} />
         <Route path="form" element={<Formular />} />
         <Route path="/events/:id" element={<EventDetails />} />
-      </Routes>
+
+        <Route path="/*" element={<ListsEvents />} />
+      </Routes >
     </div >
   );
 }

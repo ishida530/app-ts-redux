@@ -23,7 +23,7 @@ const Event: React.FC<Props> = ({ event, id }) => {
                 return (
                     <div key={index} className='col-12 col-lg d-block d-sm-flex mb-2'>
                         <div className='col-12 col-sm-6 col-lg d-block d-sm-flex d-lg-none justify-content-center justify-content-sm-start justify-content-lg-center align-items-center fw-bold'>{titles[index]}:</div>
-                        <div className='col-12 col-sm-6 col-lg '><img className='img-fluid' src={process.env.PUBLIC_URL + `/images/${value}`} /></div>
+                        <div className='col-12 col-sm-6 col-lg '><img className='img-fluid' data-testid="image" src={process.env.PUBLIC_URL + `/images/${value}`} /></div>
                     </div>
                 )
             } else if (index === 1) {
@@ -42,7 +42,7 @@ const Event: React.FC<Props> = ({ event, id }) => {
                     </div>)
             }
         })}
-        <div className='col d-flex align-items-center justify-content-center' ><Link state={event} className='btn btn-secondary' to={`/events/${id}`} >Details</Link></div>
+        <div className='col d-flex align-items-center justify-content-center' ><Link state={event} className='btn btn-outline-secondary' to={`/events/${id}`} >Details</Link></div>
     </li >
 
 };
