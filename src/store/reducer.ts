@@ -7,8 +7,8 @@ export const initialState: EventState = {
             date_event: new Date(),
             description: "world rally championship",
             type_event: "Sport",
-            phone_number: "+44 515 515 515",
-            email: "wrc@gmail.pl",
+            phone_number: "+49 515 515 515",
+            email: "wrc@gmail.com",
             place_event: "Nederland",
             image: "mustang.jpg",
         }
