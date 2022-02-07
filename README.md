@@ -3,6 +3,8 @@
 3. Next step is run lolcalhost open second cmd in same directory and use command "npm start".
 4.localhost should be working on http://localhost:3000 .
 
+IMPORTANT!
+Please uplad images from directory Public/images, then images will be visible.
 
 Library/framework which I based in project:
 -Typescript
